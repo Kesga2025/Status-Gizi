@@ -17,9 +17,19 @@
 
     <script>
         async function ambilData() {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbxN-BzTeuduUmP_-o0hRDdow5_H1NqHE4aah_5a0rZOOSUjNJZuyrX7HtVT_-_qw0XL-g/exec");
-            const data = await response.json();
-            document.getElementById("hasil").innerText = JSON.stringify(data, null, 2);
+            try {
+                let response = await fetch("https://script.google.com/macros/s/AKfycbxN-BzTeuduUmP_-o0hRDdow5_H1NqHE4aah_5a0rZOOSUjNJZuyrX7HtVT_-_qw0XL-g/exec");
+                
+                if (!response.ok) {
+                    throw new Error("Gagal mengambil data. Status: " + response.status);
+                }
+
+                let data = await response.json();
+                document.getElementById("hasil").innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById("hasil").innerText = "Error: " + error.message;
+                console.error("Terjadi kesalahan:", error);
+            }
         }
     </script>
 </body>
