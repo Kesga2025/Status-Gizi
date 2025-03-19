@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Saya</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #hasil { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Selamat Datang di Aplikasi Saya</h1>
+    <button onclick="ambilData()">Ambil Data</button>
+    <p id="hasil"></p>
+
+    <script>
+        async function ambilData() {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbxN-BzTeuduUmP_-o0hRDdow5_H1NqHE4aah_5a0rZOOSUjNJZuyrX7HtVT_-_qw0XL-g/exec");
+            const data = await response.json();
+            document.getElementById("hasil").innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
